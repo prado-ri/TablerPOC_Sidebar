@@ -1,0 +1,280 @@
+/* Header full-width, azul escuro */
+.app-header {
+    background: #0a2b4d; /* azul escuro */
+    min-height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+    .app-header .logo {
+        width: 28px;
+        height: 28px
+    }
+
+/* Sidebar cinza, fixado sob o header */
+.app-sidenav {
+    min-height: calc(100vh - 56px);
+    background: #f3f4f6; /* cinza claro Tabler-like */
+    border-right: 1px solid rgba(0,0,0,.05);
+    transition: width 0.2s ease-in-out;
+}
+
+/* Links base do sidenav */
+.snav-link, .snav-sublink {
+    text-decoration: none;
+}
+
+.snav-link {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem .75rem;
+    border-radius: .375rem;
+    color: #334155;
+    transition: transform .15s ease, background-color .15s ease, color .15s ease;
+    cursor: pointer;
+}
+
+/* Garante que links no header e na sidebar não tenham sublinhado */
+.app-header a, .snav-link, .snav-sublink {
+    text-decoration: none;
+}
+
+    /* Garante que o sublinhado não apareça nem no hover/focus */
+    .app-header a:hover,
+    .app-header a:focus,
+    .snav-link:hover,
+    .snav-link:focus,
+    .snav-sublink:hover,
+    .snav-sublink:focus {
+        text-decoration: none;
+    }
+
+    .snav-link:hover {
+        background: #e5e7eb;
+        transform: translateX(2px)
+    }
+
+    /* Estado ativo do link */
+    .snav-link.active {
+        background-color: #e5e7eb;
+        color: #0a2b4d;
+        font-weight: 500;
+    }
+
+    .snav-link .snav-caret {
+        transition: transform .2s ease
+    }
+
+/* Grupo (submenu) */
+.snav-group {
+    margin: .125rem 0;
+}
+
+    /* Remove marcador padrão do summary e alinha caret à direita */
+    .snav-group > summary {
+        list-style: none;
+    }
+
+        .snav-group > summary::-webkit-details-marker {
+            display: none
+        }
+
+/* Submenu container */
+.snav-sub {
+    margin-left: 2rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .25s ease;
+}
+
+/* Subitens */
+.snav-sublink {
+    display: block;
+    padding: .35rem .5rem;
+    border-radius: .375rem;
+    color: #475569;
+    margin: .15rem 0;
+    transition: background-color .15s ease, transform .15s ease;
+}
+
+    .snav-sublink:hover {
+        background: #e9ecef;
+        transform: translateX(2px)
+    }
+
+    /* Estado ativo do sublink */
+    .snav-sublink.active {
+        background: #e9ecef;
+        color: #0a2b4d;
+        font-weight: 500;
+    }
+
+/* Anima: quando aberto, expande e gira caret */
+.snav-group[open] > .snav-sub {
+    max-height: 500px
+}
+
+.snav-group[open] .snav-caret {
+    transform: rotate(90deg)
+}
+
+/* Responsivo: em telas pequenas, sidebar full-width acima do conteúdo */
+@media (max-width: 767.98px) {
+    .app-sidenav {
+        min-height: auto;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* NOVOS ESTILOS PARA SIDEBAR COLAPSADA (APLICADOS no <body>)                 */
+/* -------------------------------------------------------------------------- */
+/* Estilos para a sidebar quando colapsada */
+.sidebar-collapsed .app-sidenav {
+    width: 80px; /* Largura da sidebar colapsada */
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+/* Oculta textos quando a sidebar está colapsada */
+.sidebar-collapsed .text-uppercase,
+.sidebar-collapsed .snav-link span,
+.sidebar-collapsed .snav-sub,
+.sidebar-collapsed .snav-caret {
+    display: none;
+}
+
+/* Centraliza os ícones */
+.sidebar-collapsed .snav-link,
+.sidebar-collapsed .snav-group summary {
+    justify-content: center;
+}
+
+    /* Apenas o ícone é visível */
+    .sidebar-collapsed .snav-link i {
+        margin-right: 0 !important;
+    }
+
+/* Ajuste no botão de colapso do desktop */
+.navbar-toggler {
+    color: #fff;
+    border-color: rgba(255,255,255,.1);
+}
+
+    .navbar-toggler:focus {
+        box-shadow: none;
+    }
+/* Ajusta o conteúdo principal */
+#main-content {
+    transition: width 0.2s ease-in-out;
+}
+/* No JS, iremos alternar entre col-md-9 e col-md-11 para ajustar a largura */
+
+
+/* -------------------------------------------------------------------------- */
+/* NOVOS ESTILOS PARA O OFFCANVAS (mobile)                                    */
+/* -------------------------------------------------------------------------- */
+
+/* Garante que o offcanvas comece abaixo do header */
+.app-offcanvas-mobile {
+    top: 56px; /* Altura do seu header */
+    height: calc(100vh - 56px);
+}
+
+/* Garante a largura e borda da sidebar de desktop para manter a consistência */
+.app-sidenav {
+    min-height: calc(100vh - 56px);
+    background: #f3f4f6; /* cinza claro Tabler-like */
+    border-right: 1px solid rgba(0,0,0,.05);
+}
+/* -------------------------------------------------------------------------- */
+/* NOVOS ESTILOS PARA SIDEBAR: EXPANDIR NO HOVER                               */
+/* -------------------------------------------------------------------------- */
+
+/* Garante que o container de colunas se ajuste */
+.sidebar-collapsed #main-content {
+    transition: width 0.2s ease-in-out;
+}
+
+/* Quando a sidebar está colapsada e o mouse está sobre ela, reverte o estilo */
+.sidebar-collapsed .app-sidenav.sidebar-hover-expand {
+    width: 250px; /* Largura padrão expandida */
+    /* Remove o padding zero que foi adicionado no colapso */
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+}
+
+    /* Efeito de hover: mostra os elementos que foram ocultados */
+    .sidebar-collapsed .app-sidenav.sidebar-hover-expand .text-uppercase,
+    .sidebar-collapsed .app-sidenav.sidebar-hover-expand .snav-link span,
+    .sidebar-collapsed .app-sidenav.sidebar-hover-expand .snav-sub,
+    .sidebar-collapsed .app-sidenav.sidebar-hover-expand .snav-caret {
+        display: initial; /* ou display: flex; */
+    }
+
+    /* Alinhamento de volta ao normal */
+    .sidebar-collapsed .app-sidenav.sidebar-hover-expand .snav-link,
+    .sidebar-collapsed .app-sidenav.sidebar-hover-expand .snav-group summary {
+        justify-content: flex-start;
+    }
+
+        /* Margem dos ícones de volta ao normal */
+        .sidebar-collapsed .app-sidenav.sidebar-hover-expand .snav-link i {
+            margin-right: .5rem !important;
+        }
+
+/* Efeito de hover nos ícones do header, sem transparência */
+.app-header-icons .nav-link {
+    color: #fff !important;
+    padding: .5rem .75rem !important;
+    border-radius: .375rem;
+    transition: background-color .2s ease;
+}
+
+    .app-header-icons .nav-link:hover {
+        background-color: rgba(255,255,255,.1);
+    }
+
+/* Garante que o fundo dos dropdowns seja sólido */
+.dropdown-menu {
+    background-color: #fff !important;
+}
+
+/* Estilo para o botão de Sair */
+.btn-logout {
+    color: #fff !important;
+    background-color: #dc3545; /* Cor vermelha do Bootstrap */
+    border-radius: .25rem;
+    text-align: center;
+    margin: .5rem 1rem !important; /* Centraliza e adiciona margem */
+    padding: .5rem 1rem !important;
+    border: 1px solid transparent;
+}
+
+    .btn-logout:hover {
+        background-color: #c82333; /* Vermelho mais escuro no hover */
+        color: #fff !important;
+    }
+/* Estilo para o botão de Sair corrigido */
+.btn-logout-container {
+    padding: .5rem 1rem !important;
+}
+
+    .btn-logout-container .btn {
+        width: 100%;
+    }
+/* Remove sublinhados em links de forma geral */
+a {
+    text-decoration: none;
+}
+@media (max-width: 767.98px) {
+    .app-notifications-dropdown.dropdown-menu {
+        top: 56px !important;
+        position: fixed !important;
+        left: 0;
+        right: 0;
+        margin: 0;
+    }
+}

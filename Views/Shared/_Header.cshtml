@@ -1,0 +1,111 @@
+﻿@* Header com toggler para mobile e dropdown de usuário *@
+<header class="navbar navbar-dark app-header">
+    <div class="container-fluid">
+        @* Botões para colapso da sidebar - desktop e mobile *@
+        <div class="d-flex me-3">
+            @* Botão Hamburger para mobile (aciona o Offcanvas) *@
+            <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobile-sidebar" aria-controls="mobile-sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            @* Botão de Colapso para Desktop *@
+            <button id="sidebar-toggler-desktop" class="navbar-toggler d-none d-md-block" type="button" aria-label="Toggle sidebar">
+                <i class="ti ti-menu-2"></i>
+            </button>
+        </div>
+
+        <a class="navbar-brand d-flex align-items-center gap-2" href="@Url.Action("Index", "Home")">
+            @* Logos *@
+            <img src="/img/branding/GEA_Logo_w_Claim_sRGB_Solid_neg.svg" class="app-brand-img demo w-px-100 h-auto d-none d-md-block" alt="logo" />
+            <img src="/img/branding/GEA_Logo_wo_Claim_sRGB_Solid_neg.svg" class="app-brand-img-collapsed demo w-px-40 h-auto d-block d-md-none" alt="logo" />
+            <span class="fw-semibold d-none d-md-block">SmartSite</span>
+        </a>
+
+        @* Itens da direita com espaçamento ajustado *@
+        <div class="d-flex align-items-center gap-2 ms-auto app-header-icons">
+
+            @* Dropdown de Notificações *@
+            <div class="nav-item dropdown d-flex align-items-center">
+                <a href="#" class="nav-link text-reset p-0" data-bs-toggle="dropdown" aria-label="Open notifications menu">
+                    <span class="position-relative">
+                        <i class="ti ti-bell"></i>
+                        <span class="badge position-absolute top-0 start-100 translate-middle badge-sm bg-red">3</span>
+                    </span>
+                </a>
+                @* Adicionada a classe dropdown-menu-end e um estilo para reposicionar no mobile *@
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow dropdown-menu-card app-notifications-dropdown" style="min-width: 320px;">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            @* Adicionado align-items-center aqui *@
+                            <h3 class="card-title mb-0">Notificações</h3> @* Removido mb-0 para alinhar com o link *@
+                            <a href="#" class="small text-secondary">Marcar tudo como lido</a>
+                        </div>
+                        <div class="list-group list-group-flush list-group-hoverable">
+                            <a href="#" class="list-group-item list-group-item-action py-2 px-3"> @* Ajustado padding *@
+                                <div class="d-flex align-items-center"> @* Usando d-flex diretamente *@
+                                    <div class="col text-truncate">
+                                        <div class="text-body d-block fw-semibold">Retirada maior que o permitido no projeto</div> @* Mensagem padrão *@
+                                        <div class="d-block text-muted text-truncate mt-1" style="font-size: 0.75rem;"> @* Ajustado tamanho da fonte e margin-top *@
+                                            <span>Data: 23/10/2023 Hora: 14:30</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                             <a href="#" class="list-group-item list-group-item-action py-2 px-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="col text-truncate">
+                                        <div class="text-body d-block fw-semibold">Novo acesso detectado</div>
+                                        <div class="d-block text-muted text-truncate mt-1" style="font-size: 0.75rem;">
+                                            <span>Data: 23/10/2023 Hora: 15:45</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action py-2 px-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="col text-truncate">
+                                        <div class="text-body d-block fw-semibold">Atualização de sistema disponível</div>
+                                        <div class="d-block text-muted text-truncate mt-1" style="font-size: 0.75rem;">
+                                            <span>Data: 23/10/2023 Hora: 16:00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card-footer text-center py-2"> @* Ajustado padding *@
+                            <a href="#">Ver histórico de notificações</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @* Dropdown de Usuário Aprimorado *@
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
+                                    <span class="avatar avatar-sm rounded-circle" style="background-color:#fff; color:#0a2b4d;">SS</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                    <div class="dropdown-header">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <span class="avatar rounded-circle me-2" style="background-color: #0a2b4d; color: #fff;">AD</span>
+                                            <div class="lh-1">
+                                                <h6 class="mb-0">Administrador</h6>
+                                                <small class="text-muted">admin@smartsite.com</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-divider"></div> @* Divisor antes dos itens *@
+                    <a href="#" class="dropdown-item"><i class="ti ti-user me-2"></i> Meu Perfil</a>
+                    <a href="#" class="dropdown-item"><i class="ti ti-dashboard me-2"></i> Dashboard</a>
+                    <a href="#" class="dropdown-item"><i class="ti ti-chart-bar me-2"></i> Posts & Atividade</a>
+                    <a href="#" class="dropdown-item"><i class="ti ti-settings me-2"></i> Configurações & Privacidade</a>
+                    <a href="#" class="dropdown-item"><i class="ti ti-help-circle me-2"></i> Central de Ajuda</a>
+                    <div class="dropdown-divider"></div>
+                    @* Botão "Sair" *@
+                                    <div class="dropdown-item btn-logout-container">
+                                        <a href="#" class="btn btn-danger w-100"><i class="ti ti-logout me-2"></i> Sair</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+</header>

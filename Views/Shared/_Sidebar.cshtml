@@ -1,0 +1,53 @@
+﻿@* Sidebar vertical com 10+ itens e 3 submenus usando details/summary *@
+<nav class="sidenav p-3">
+    <div class="text-uppercase text-muted small mb-3">Navegação</div>
+
+    <a id="nav-dashboard" class="snav-link" href="@Url.Action("Index", "Home")" data-bs-toggle="tooltip" data-bs-placement="right" title="Dashboard">
+        <i class="ti ti-smart-home me-2"></i> <span>Dashboard</span>
+    </a>
+
+    <details class="snav-group">
+        <summary class="snav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="E‑commerce">
+            <i class="ti ti-shopping-cart me-2"></i> <span>E‑commerce</span>
+            <i class="ti ti-chevron-right ms-auto snav-caret"></i>
+        </summary>
+        <div class="snav-sub">
+            <a id="nav-ecommerce-pedidos" class="snav-sublink" href="#">Pedidos</a>
+            <a id="nav-ecommerce-produtos" class="snav-sublink" href="#">Produtos</a>
+            <a id="nav-ecommerce-relatorios" class="snav-sublink" href="#">Relatórios</a>
+        </div>
+    </details>
+
+    <details class="snav-group">
+        <summary class="snav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="CRM">
+            <i class="ti ti-address-book me-2"></i> <span>CRM</span>
+            <i class="ti ti-chevron-right ms-auto snav-caret"></i>
+        </summary>
+        <div class="snav-sub">
+            <a id="nav-crm-leads" class="snav-sublink" href="#">Leads</a>
+            <a id="nav-crm-contatos" class="snav-sublink" href="#">Contatos</a>
+            <a id="nav-crm-funil" class="snav-sublink" href="#">Funil</a>
+        </div>
+    </details>
+
+    <details class="snav-group">
+        <summary class="snav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Projetos">
+            <i class="ti ti-folders me-2"></i> <span>Projetos</span>
+            <i class="ti ti-chevron-right ms-auto snav-caret"></i>
+        </summary>
+        <div class="snav-sub">
+            <a id="nav-projetos-lista" class="snav-sublink" href="#">Lista</a>
+            <a id="nav-projetos-equipe" class="snav-sublink" href="#">Equipe</a>
+            <a id="nav-projetos-relatorios" class="snav-sublink" href="#">Relatórios</a>
+        </div>
+    </details>
+
+    <a class="snav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Almoxarifado"><i class="ti ti-building-warehouse me-2"></i> <span>Almoxarifado</span></a>
+    <a class="snav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Analytics"><i class="ti ti-chart-line me-2"></i> <span>Analytics</span></a>
+    <a class="snav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Chat"><i class="ti ti-brand-hipchat me-2"></i> <span>Chat</span></a>
+    <a class="snav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="E‑mail"><i class="ti ti-mail me-2"></i> <span>E‑mail</span></a>
+    <a class="snav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Agenda"><i class="ti ti-calendar-event me-2"></i> <span>Agenda</span></a>
+    <a class="snav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Kanban"><i class="ti ti-layout-kanban me-2"></i> <span>Kanban</span></a>
+    <a class="snav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Colaboradores"><i class="ti ti-users-group me-2"></i> <span>Colaboradores</span></a>
+    <a class="snav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Administração"><i class="ti ti-settings me-2"></i> <span>Administração</span></a>
+</nav>
