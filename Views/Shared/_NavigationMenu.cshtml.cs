@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace TablerPOC.Views.Shared
 {
-    public class _SidebarModel : PageModel
+    public class _NavigationMenuModel : PageModel
     {
         public void OnGet()
         {

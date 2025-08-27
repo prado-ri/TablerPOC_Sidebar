@@ -1,3 +1,13 @@
 ﻿@{
-    Layout = "_Layout";
+    // Lógica para ler a preferência de layout do usuário (aqui usamos um Cookie)
+    var layoutPreference = Context.Request.Cookies["LayoutPreference"] ?? "Vertical";
+
+    if (layoutPreference == "Horizontal")
+    {
+        Layout = "_LayoutHorizontal";
+    }
+    else
+    {
+        Layout = "_LayoutVertical";
+    }
 }

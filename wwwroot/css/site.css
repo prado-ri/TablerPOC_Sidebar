@@ -1,6 +1,21 @@
+
+:root {
+    /* GEA Primary Colors */
+    --gea-primary: #0303B8;
+    --gea-secondary: #000F41; /* Navy */
+    /* GEA Accent Colors */
+    --gea-active-blue: #1F9DFF;
+    /* GEA Neutral Colors */
+    --gea-surface: #F5F5F5;
+    --gea-border: #DCDCDC;
+    --gea-text-primary-darkbg: #FFFFFF;
+    --gea-text-secondary-darkbg: rgba(255, 255, 255, 0.75);
+}
+
 /* Header full-width, azul escuro */
 .app-header {
-    background: #0a2b4d; /* azul escuro */
+    background-color: var(--gea-secondary); /* Cor Navy */
+    color: var(--gea-text-primary-darkbg);
     min-height: 56px;
     position: sticky;
     top: 0;
@@ -234,7 +249,7 @@
 }
 
     .app-header-icons .nav-link:hover {
-        background-color: rgba(255,255,255,.1);
+        background-color: rgba(255,255,255,.2);
     }
 
 /* Garante que o fundo dos dropdowns seja sólido */
@@ -277,4 +292,41 @@ a {
         right: 0;
         margin: 0;
     }
+}
+.layout-vertical .app-sidenav {
+    background-color: var(--gea-secondary); /* Navy no modo Vertical */
+    /* ... outros estilos ... */
+}
+
+/* -------------------------------------------------------------------------- */
+/* ESTILOS PARA O SUB-HEADER (LAYOUT HORIZONTAL)                              */
+/* -------------------------------------------------------------------------- */
+
+.app-subheader {
+    /* A cor de fundo é aplicada aqui, no container principal */
+    background-color: var(--gea-primary); 
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+    z-index: 999;
+}
+
+/*
+  Esta regra garante que a navbar interna não tenha seu próprio fundo,
+  herdando a cor do container .app-subheader.
+*/
+.app-subheader .navbar {
+    background-color: transparent !important;
+}
+
+/*
+  Como a navbar interna é 'navbar-dark', os links já serão brancos.
+  Estas regras são para o efeito de hover e estado ativo.
+*/
+.app-subheader .nav-link {
+    color: var(--gea-text-secondary-darkbg); /* Branco com 75% de opacidade */
+    transition: color .2s ease;
+}
+
+.app-subheader .nav-link:hover,
+.app-subheader .nav-link.active {
+    color: var(--gea-text-primary-darkbg); /* Branco sólido */
 }

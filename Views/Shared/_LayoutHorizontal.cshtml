@@ -1,0 +1,123 @@
+﻿@{
+    Layout = null;
+    var appTitle = "SmartSite";
+}
+<!doctype html>
+<html lang="pt-br" data-bs-theme="light" class="layout-horizontal">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>@appTitle - @ViewBag.Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/@@tabler/core@1.0.0-beta20/dist/css/tabler.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@@tabler/icons-webfont@latest/tabler-icons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    @await Html.PartialAsync("_Header")
+    @await Html.PartialAsync("_HeaderNavigation")
+
+    <div class="page-wrapper">
+     
+            @RenderBody()
+     
+    </div>
+    @* Sidebar para Mobile - É um offcanvas, visível apenas em telas pequenas *@
+    <div class="offcanvas offcanvas-start app-offcanvas-mobile d-md-none" tabindex="-1" id="mobile-sidebar" aria-labelledby="offcanvasLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasLabel">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        @* Reutilizamos o mesmo menu da sidebar vertical *@
+        @await Html.PartialAsync("_SidebarNavigation")
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@@tabler/core@1.0.0-beta20/dist/js/tabler.min.js"></script>
+    @* O script de inicialização será gerenciado pelo _ViewStart ou página principal *@
+
+    <script>
+        /**
+         * Função para definir a preferência de layout do usuário via cookie.
+         * @@param {'Vertical' | 'Horizontal'} layout - O nome do layout a ser salvo.
+         */
+        function setLayoutPreference(layout) {
+            // Define um cookie que expira em 1 ano
+            const d = new Date();
+            d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = "LayoutPreference=" + layout + ";" + expires + ";path=/";
+
+            // Recarrega a página para aplicar o novo layout
+            window.location.reload();
+        }
+
+        // Executa todo o código de inicialização após o carregamento completo do DOM.
+        document.addEventListener("DOMContentLoaded", function() {
+
+            // --- 1. LÓGICA DO TOGGLER (BOTÃO HAMBÚRGUER) UNIFICADO ---
+            const toggler = document.getElementById('layout-toggler');
+            if (toggler) {
+                const mobileOffcanvasEl = document.getElementById('mobile-sidebar');
+                const mobileOffcanvas = mobileOffcanvasEl ? new bootstrap.Offcanvas(mobileOffcanvasEl) : null;
+
+                toggler.addEventListener('click', function() {
+                    const isMobile = window.innerWidth < 768;
+
+                    // Ação prioritária para mobile: sempre abrir o offcanvas vertical.
+                    if (isMobile && mobileOffcanvas) {
+                        mobileOffcanvas.toggle();
+                        return; // Encerra a função aqui para não executar a lógica de desktop.
+                    }
+
+                    // Ações para desktop, dependendo do layout ativo.
+                    if (document.documentElement.classList.contains('layout-vertical')) {
+                        // No layout vertical, colapsa/expande a sidebar.
+                        document.body.classList.toggle('sidebar-collapsed');
+                    }
+                    // No layout horizontal, o botão não tem ação no desktop, como solicitado.
+                });
+            }
+
+            // --- 2. LÓGICA PARA EXPANDIR SIDEBAR VERTICAL NO HOVER ---
+            const desktopSidebar = document.getElementById('desktop-sidebar');
+            if (desktopSidebar) {
+                desktopSidebar.addEventListener('mouseenter', function() {
+                    // Se o corpo tiver a classe de colapsado, adiciona a classe de hover para expandir.
+                    if (document.body.classList.contains('sidebar-collapsed')) {
+                        desktopSidebar.classList.add('sidebar-hover-expand');
+                    }
+                });
+
+                desktopSidebar.addEventListener('mouseleave', function() {
+                    // Sempre remove a classe de hover ao tirar o mouse.
+                    desktopSidebar.classList.remove('sidebar-hover-expand');
+                });
+            }
+
+            // --- 3. LÓGICA PARA MARCAR O LINK ATIVO NA NAVEGAÇÃO ---
+            const currentPath = window.location.pathname.toLowerCase();
+            if (currentPath === '/' || currentPath.includes('/home')) {
+                document.querySelector('#nav-dashboard')?.classList.add('active');
+            } else {
+                // Procura por um link exato primeiro
+                const activeLink = document.querySelector(`.snav-link[href*="${currentPath}"], .nav-link[href*="${currentPath}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                    // Se for um sublink, abre o menu pai
+                    const parentGroup = activeLink.closest('.snav-group');
+                    if (parentGroup) {
+                        parentGroup.setAttribute('open', '');
+                    }
+                }
+            }
+
+            // --- 4. INICIALIZA TODOS OS TOOLTIPS DO BOOTSTRAP ---
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl, {
+                    delay: { show: 500, hide: 100 }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

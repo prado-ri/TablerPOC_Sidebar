@@ -1,0 +1,10 @@
+﻿@* Módulo de Navegação Vertical *@
+<aside id="desktop-sidebar" class="app-sidenav">
+  
+    @await Html.PartialAsync("_NavigationMenu")
+</aside>
+
+@* Offcanvas para Mobile *@
+<div class="offcanvas offcanvas-start app-offcanvas-mobile" tabindex="-1" id="mobile-sidebar" aria-labelledby="offcanvasLabel">
+    @await Html.PartialAsync("_NavigationMenu")
+</div>
