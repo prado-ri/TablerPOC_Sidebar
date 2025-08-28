@@ -17,9 +17,11 @@
     @await Html.PartialAsync("_HeaderNavigation")
 
     <div class="page-wrapper">
-     
-            @RenderBody()
-     
+        <main id="main-content" class="page-body">
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+        </main>
     </div>
     @* Sidebar para Mobile - É um offcanvas, visível apenas em telas pequenas *@
     <div class="offcanvas offcanvas-start app-offcanvas-mobile d-md-none" tabindex="-1" id="mobile-sidebar" aria-labelledby="offcanvasLabel">

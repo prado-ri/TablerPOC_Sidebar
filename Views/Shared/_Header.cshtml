@@ -17,9 +17,11 @@
 
 
         @* Barra de Busca Centralizada (visível apenas em desktop) *@
-        <div class="d-none d-md-flex flex-grow-1 px-4">
-            <div class="search-box mx-auto" style="max-width: 400px;">
-                <input class="form-control" type="search" placeholder="Buscar..." aria-label="Search" />
+        @* Substitua o código do seu formulário de busca por este: *@
+        <div class="ms-auto d-none d-lg-flex">
+            <div class="search-form-container">
+                <i class="ti ti-search search-icon"></i>
+                <input type="text" class="form-control search-input" placeholder="Search this site" aria-label="Search this site">
             </div>
         </div>
 

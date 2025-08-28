@@ -18,31 +18,31 @@
     @await Html.PartialAsync("_Header")
 
     <div class="page">
-        
-        @* A sidebar de desktop e o conteúdo usam um sistema de grid para garantir que fiquem lado a lado *@
-        <div class="row g-0">
-            @* Sidebar para Desktop - visível a partir de md, usa col-md-3 do grid *@
-            <aside id="desktop-sidebar" class="col-12 col-md-3 col-xl-2 app-sidenav d-none d-md-block">
-                @await Html.PartialAsync("_SidebarNavigation")
-            </aside>
+        @* A sidebar fica diretamente dentro do .page *@
+        <aside id="desktop-sidebar" class="app-sidenav d-none d-md-block">
+            @await Html.PartialAsync("_SidebarNavigation")
+        </aside>
 
-            @* Conteúdo principal *@
-            <main id="main-content" class="col-12 col-md-9 col-xl-10 py-4 px-4">
-                @RenderBody()
+        @* O conteúdo principal DEVE estar dentro de um .page-wrapper *@
+        <div class="page-wrapper">
+            <main id="main-content" class="page-body">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
             </main>
         </div>
-       
     </div>
 
-    @* Sidebar para Mobile - É um offcanvas, visível apenas em telas pequenas *@
+    @* O Offcanvas do mobile fica fora da estrutura .page *@
     <div class="offcanvas offcanvas-start app-offcanvas-mobile d-md-none" tabindex="-1" id="mobile-sidebar" aria-labelledby="offcanvasLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasLabel">Menu</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        @await Html.PartialAsync("_SidebarNavigation")
+        <div class="offcanvas-body p-0">
+            @await Html.PartialAsync("_SidebarNavigation")
+        </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/@@tabler/core@1.0.0-beta20/dist/js/tabler.min.js"></script>
 
     <script>

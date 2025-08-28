@@ -10,6 +10,15 @@
     --gea-border: #DCDCDC;
     --gea-text-primary-darkbg: #FFFFFF;
     --gea-text-secondary-darkbg: rgba(255, 255, 255, 0.75);
+    --font-family-gea: "Segoe UI", "Segoe UI Web (West European)", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+
+/* --- 1. ESTILOS GERAIS --- */
+body {
+    font-family: var(--font-family-gea);
+    background-color: var(--gea-surface);
 }
 
 /* Header full-width, azul escuro */
@@ -31,9 +40,18 @@
 /* Sidebar cinza, fixado sob o header */
 .app-sidenav {
     min-height: calc(100vh - 56px);
-    background: #f3f4f6; /* cinza claro Tabler-like */
+    background: #e5e7eb; /* cinza claro Tabler-like */
     border-right: 1px solid rgba(0,0,0,.05);
     transition: width 0.2s ease-in-out;
+    width: 250px; /* << ADICIONE ESTA LINHA */
+}
+
+.page-wrapper {
+    flex: 1 1 0%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
 }
 
 /* Links base do sidenav */
@@ -198,12 +216,6 @@
     height: calc(100vh - 56px);
 }
 
-/* Garante a largura e borda da sidebar de desktop para manter a consistência */
-.app-sidenav {
-    min-height: calc(100vh - 56px);
-    background: #f3f4f6; /* cinza claro Tabler-like */
-    border-right: 1px solid rgba(0,0,0,.05);
-}
 /* -------------------------------------------------------------------------- */
 /* NOVOS ESTILOS PARA SIDEBAR: EXPANDIR NO HOVER                               */
 /* -------------------------------------------------------------------------- */
@@ -280,10 +292,7 @@
     .btn-logout-container .btn {
         width: 100%;
     }
-/* Remove sublinhados em links de forma geral */
-a {
-    text-decoration: none;
-}
+
 @media (max-width: 767.98px) {
     .app-notifications-dropdown.dropdown-menu {
         top: 56px !important;
@@ -292,10 +301,6 @@ a {
         right: 0;
         margin: 0;
     }
-}
-.layout-vertical .app-sidenav {
-    background-color: var(--gea-secondary); /* Navy no modo Vertical */
-    /* ... outros estilos ... */
 }
 
 /* -------------------------------------------------------------------------- */
@@ -329,4 +334,38 @@ a {
 .app-subheader .nav-link:hover,
 .app-subheader .nav-link.active {
     color: var(--gea-text-primary-darkbg); /* Branco sólido */
+}
+
+/* ADICIONE ESTE CÓDIGO AO FINAL DO ARQUIVO */
+
+/* --- Estilos para o novo campo de busca no Header --- */
+.search-form-container {
+    position: relative;
+}
+
+    .search-form-container .search-icon {
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        transform: translateY(-50%);
+        color: #6c757d; /* Cor do ícone */
+        pointer-events: none; /* Permite clicar através do ícone no input */
+    }
+
+    .search-form-container .search-input {
+        width: 420px; /* Largura inspecionada do site original */
+        height: 36px; /* Altura um pouco maior para melhor alinhamento */
+        padding-left: 36px; /* Abre espaço para o ícone à esquerda */
+        border-radius: 4px;
+        border: 1px solid var(--gea-border);
+    }
+
+        .search-form-container .search-input:focus {
+            border-color: var(--gea-active-blue);
+            box-shadow: 0 0 0 2px rgba(31, 157, 255, 0.25);
+        }
+.page {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 0%;
 }
